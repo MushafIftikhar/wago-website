@@ -2605,20 +2605,43 @@ img { max-width: 100%; height: auto; }
         gap: 12px; /* Reduces the gap between cards */
     }
     .trust-logos { gap: 20px; justify-content: center; }
-
-    /* Synthesis dashboard */
+/* Synthesis dashboard */
     .synthesis-section {
         height: auto;
         min-height: auto;
         display: block;
         padding: 50px 20px;
     }
+    
+    /* Force all panels to occupy the exact same space on mobile */
     .dashboard-grid {
-        grid-template-columns: 1fr;
-        height: auto;
-        gap: 24px;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr !important; 
+        height: auto !important; /* Overrides any previous squished heights */
+        min-height: 680px !important; /* Gives plenty of room for the text box */
+        gap: 0 !important;
     }
-    .glass-panel { overflow: visible; max-height: none; }
+    
+    /* Hide all panels by default on mobile, placing them in the same grid cell */
+    .glass-panel { 
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+        z-index: 1;
+        overflow: visible; 
+        max-height: none; 
+    }
+    
+    /* The class JavaScript will use to reveal the active panel */
+    .glass-panel.active-panel {
+        opacity: 1;
+        visibility: visible;
+        z-index: 2;
+    }
+    
     .engine-diagram { overflow-x: auto; padding-bottom: 10px; }
 
     /* Proven Results */

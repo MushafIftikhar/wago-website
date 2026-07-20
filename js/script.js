@@ -7,7 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const extractionLines = document.querySelectorAll('#demo-extraction .extraction-line');
     const reportLines = document.querySelectorAll('#demo-report .hidden-text');
 
+    // Select the three panels
+    const voicePanel = document.querySelector('.voice-panel');
+    const enginePanel = document.querySelector('.engine-panel');
+    const reportPanel = document.querySelector('.report-panel');
+
     const textToType = "\"How do I update fall... over 10 feet...\"";
+
+    // Function to crossfade panels (only affects mobile due to our CSS setup)
+    function setMobilePanel(activePanel) {
+        voicePanel.classList.remove('active-panel');
+        enginePanel.classList.remove('active-panel');
+        reportPanel.classList.remove('active-panel');
+        activePanel.classList.add('active-panel');
+    }
 
     function runDemoSequence() {
         typingText.innerHTML = "";
@@ -15,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
         extractionLines.forEach(line => line.classList.remove('visible'));
         reportLines.forEach(line => line.classList.remove('visible'));
 
-        // Step 1: user speaks
+        // Step 1: User speaks -> Show Voice Panel
+        setMobilePanel(voicePanel);
         mic.classList.add('listening');
         soundWaves.forEach(wave => wave.classList.add('active'));
 
@@ -26,33 +40,35 @@ document.addEventListener("DOMContentLoaded", () => {
             if (i >= textToType.length) clearInterval(typeInterval);
         }, 50);
 
-        // Step 2: mic stops, docs start flowing into the AI core
+        // Step 2: Mic stops, docs start flowing -> Show Engine Panel
         setTimeout(() => {
+            setMobilePanel(enginePanel);
             mic.classList.remove('listening');
             soundWaves.forEach(wave => wave.classList.remove('active'));
             aiBrain.classList.add('processing');
             progressBar.style.width = '60%';
-        }, 2500);
+        }, 4500);
 
-        // Step 3: raw extraction preview appears
+        // Step 3: Raw extraction preview appears (Engine panel remains active)
         setTimeout(() => {
             progressBar.style.width = '100%';
             extractionLines.forEach((line, index) => {
                 setTimeout(() => line.classList.add('visible'), index * 500);
             });
-        }, 4200);
+        }, 6200);
 
-        // Step 4: final polished report appears
+        // Step 4: Final polished report appears -> Show Report Panel
         setTimeout(() => {
+            setMobilePanel(reportPanel);
             aiBrain.classList.remove('processing');
             reportLines.forEach((line, index) => {
                 setTimeout(() => line.classList.add('visible'), index * 600);
             });
-        }, 6800);
+        }, 8800);
     }
 
     setTimeout(runDemoSequence, 1000);
-    setInterval(runDemoSequence, 13000);
+    setInterval(runDemoSequence, 16000); // Loops the entire sequence
 });
 document.addEventListener("DOMContentLoaded", () => {
     const statNumbers = document.querySelectorAll('[data-count-to]');
