@@ -56,13 +56,13 @@ body {
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.08;
     margin: 0 0 1.8rem;
     color: #ffffff;
     letter-spacing: -0.025em;
-    white-space: nowrap;
+    white-space: normal;
     text-align: left;
 }
 
@@ -131,7 +131,7 @@ body {
 }
 
 .app-demo-window {
-    width: 115%;
+    width: 100%;
     max-width: 620px;
     border-radius: 18px;
     overflow: hidden;
@@ -2520,4 +2520,82 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
+}
+/* ============================================================
+   RESPONSIVE FIXES — tablet, mobile, small phones, TV
+   (Design stays identical — layout only reflows per screen size)
+   ============================================================ */
+
+/* ---------- Tablets (769px–1024px) ---------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-demo-window { max-width: 480px; }
+  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+  .verticals-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .results-inner { flex-direction: column; align-items: center; }
+  .flow-track { display: none; }
+}
+
+/* ---------- Phones / small tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+  .wago-hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 2rem;
+    min-height: auto;
+  }
+  .hero-content { max-width: 100%; }
+  .hero-visual { justify-content: center; margin-top: 2rem; }
+  .hero-title, .hero-subtitle { text-align: center; }
+  .hero-actions { justify-content: center; flex-wrap: wrap; }
+  .demo-tilt-wrapper { transform: none !important; }
+
+  .synthesis-section { height: auto; padding: 40px 0; }
+  .dashboard-grid { height: auto; grid-template-columns: 1fr; }
+
+  .results-inner { flex-direction: column; }
+  .advantage-panel, .compliance-strip, .live-status-panel {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Small phones (≤480px) ---------- */
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+  .btn-primary-glow, .btn-link { text-align: center; }
+  .trust-logos { gap: 18px; }
+  .trust-logo-img { height: 44px; width: 90px; }
+  .capabilities-grid, .verticals-grid { grid-template-columns: 1fr; }
+  .results-stats-grid { grid-template-columns: 1fr 1fr; }
+  .compliance-badges { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* ---------- Large desktop (≥1440px) ---------- */
+@media (min-width: 1440px) {
+  .wago-hero, .trust-inner, .capabilities-inner,
+  .results-inner, .verticals-inner, .testimonials-inner {
+    max-width: 1450px;
+  }
+}
+
+/* ---------- TV / very large screens (≥1920px) ---------- */
+@media (min-width: 1920px) {
+  html { font-size: 19px; }
+  .wago-hero, .trust-inner, .capabilities-inner,
+  .results-inner, .verticals-inner, .testimonials-inner,
+  .footer-inner {
+    max-width: 1800px;
+  }
+  .capabilities-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .verticals-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+}
+
+/* ---------- Touch devices ---------- */
+@media (hover: none) {
+  .demo-tilt-wrapper { transform: none !important; }
+  .vertical-hover-note { max-height: none; opacity: 1; margin-top: 10px; }
 }

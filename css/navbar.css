@@ -125,3 +125,61 @@
 .btn-get-started:hover {
   background-color: #1e293b;
 }
+/* ============ HAMBURGER MENU (mobile nav) ============ */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+
+  .wago-navbar { width: 94%; padding: 0.6rem 1rem; }
+  .logo-text .brand-sub { display: none; }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 4.8rem;
+    left: 3%;
+    right: 3%;
+    background: rgba(20, 25, 38, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.2rem;
+    gap: 1.2rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    transform: none;
+  }
+  .nav-links.open {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  .nav-actions .sign-in { display: none; }
+}
