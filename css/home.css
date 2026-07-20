@@ -2568,9 +2568,7 @@ img { max-width: 100%; height: auto; }
     }
     
     .hero-visual { 
-        margin-top: 30px; 
-        width: 100%; 
-        justify-content: center; 
+        display: none; 
     }
     
     /* Disable the floating 3D translation on mobile to stop it going off-screen */
