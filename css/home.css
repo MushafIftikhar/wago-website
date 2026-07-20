@@ -2591,6 +2591,15 @@ img { max-width: 100%; height: auto; }
     .hero-glow { display: none; }
 
     /* Trust / Stats */
+    .trust-section {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .trust-stats { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 12px; 
+    }
+    .trust-logos { gap: 20px; justify-content: center; }
     .trust-stats { 
         grid-template-columns: repeat(3, 1fr); /* Forces 3 columns horizontally */
         gap: 12px; /* Reduces the gap between cards */
@@ -2657,6 +2666,20 @@ img { max-width: 100%; height: auto; }
     .stat-card p {
         font-size: 0.55rem; /* Shrinks the subtext */
         letter-spacing: 0;
+    }
+    /* Fix Logos for Mobile */
+    .trust-logos {
+        gap: 15px; /* Tightens the spacing */
+        padding: 0 10px;
+    }
+    
+    .trust-logo-img {
+        height: 28px !important; /* Shrinks them to fit mobile */
+        width: auto !important;
+        transform: none !important; /* Disables the crazy desktop zoom */
+        filter: brightness(0) invert(1) !important; /* Forces them to be pure white */
+        opacity: 1 !important; /* Removes the fade effect so they stand out */
+        margin: 5px 10px;
     }
     
     /* Stack action buttons cleanly on phones */
