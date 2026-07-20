@@ -1,0 +1,27 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Global Variables --- */
+:root {
+  --bg-color: #0d1117; /* Deep dark background */
+  --text-main: #ffffff;
+  --font-primary: 'Inter', system-ui, sans-serif;
+}
+
+/* --- Base Body Styling --- */
+body {
+  background-color: var(--bg-color);
+  background-image: url('../assets/images/dark-tech-bg.jpg'); 
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-primary);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
