@@ -2621,6 +2621,11 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 700px) {
+    /* This completely hides the app demo window on mobile phones */
+    .hero-visual { 
+        display: none; 
+    }
+    
     .results-title { font-size: 2rem; }
     .results-stats-grid { grid-template-columns: 1fr; }
     .compliance-badges { grid-template-columns: repeat(2, 1fr); }
