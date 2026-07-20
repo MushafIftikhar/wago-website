@@ -14,13 +14,12 @@ body {
   background-image: url('../assets/images/dark-tech-bg.jpg'); 
   background-size: cover;
   background-position: center top;
-  background-attachment: scroll;
+  background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-primary);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 *, *::before, *::after {
