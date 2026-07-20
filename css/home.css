@@ -1259,7 +1259,31 @@ body {
     .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-    .capabilities-grid { grid-template-columns: 1fr; }
+    /* Transforms the vertical stack into a horizontal swipeable slider */
+    .capabilities-grid { 
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory; /* Forces snapping to cards */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding-bottom: 10px;
+        
+        /* Hides the ugly default scrollbar */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .capabilities-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Forces each card to take up the full screen width and snap to the start */
+    .capability-card {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        max-width: 100%;
+    }
+    
     .capabilities-title { font-size: 2.2rem; }
 }
 
@@ -2618,8 +2642,8 @@ img { max-width: 100%; height: auto; }
         display: grid !important;
         grid-template-columns: 1fr !important;
         grid-template-rows: 1fr !important; 
-        height: auto !important; /* Overrides any previous squished heights */
-        min-height: 680px !important; /* Gives plenty of room for the text box */
+        height: auto !important; 
+        min-height: auto !important; /* Removes the forced extra height */
         gap: 0 !important;
     }
     
@@ -2633,6 +2657,7 @@ img { max-width: 100%; height: auto; }
         z-index: 1;
         overflow: visible; 
         max-height: none; 
+        align-self: start; /* THE FIX: Stops the shorter panels from stretching vertically */
     }
     
     /* The class JavaScript will use to reveal the active panel */
@@ -2650,8 +2675,98 @@ img { max-width: 100%; height: auto; }
     .results-left, .results-right { width: 100%; max-width: 100%; }
     .results-right { align-items: center; }
     .advantage-panel, .compliance-strip, .live-status-panel { max-width: 100%; }
-    .results-stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
+    
+    /* Hide the desktop layout on mobile */
+    .results-stats-grid, .results-detail-list { 
+        display: none !important; 
+    }
+
+    /* Show and style the new mobile slider */
+    .mobile-results-slider {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .mobile-results-slider::-webkit-scrollbar { display: none; }
+
+    /* The combined card style */
+    .mobile-slide {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        background: rgba(20,25,38,0.6);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-left: 4px solid transparent;
+        border-radius: 12px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Card Accent Colors */
+    .mobile-slide.accent-orange { border-left-color: #fb923c; }
+    .mobile-slide.accent-blue { border-left-color: #60a5fa; }
+    .mobile-slide.accent-green { border-left-color: #34d399; }
+    .mobile-slide.accent-purple { border-left-color: #c084fc; }
+
+    /* Card Icon Colors */
+    .mobile-slide .result-stat-icon { font-size: 2.2rem; margin-bottom: 18px; }
+    .mobile-slide.accent-orange .result-stat-icon { color: #fb923c; }
+    .mobile-slide.accent-blue .result-stat-icon { color: #60a5fa; }
+    .mobile-slide.accent-green .result-stat-icon { color: #34d399; }
+    .mobile-slide.accent-purple .result-stat-icon { color: #c084fc; }
+
+    /* Card Typography */
+    .mobile-slide h4 { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 12px; }
+    .mobile-slide p { font-size: 0.95rem; line-height: 1.6; color: rgba(226,232,240,0.7); margin: 0; }
+
+    /* --- MOBILE FIT & OVERFLOW FIXES --- */
+    .results-section {
+        overflow-x: hidden !important; 
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Force all containers to strictly respect the screen width */
+    .results-inner, 
+    .results-left, 
+    .results-right, 
+    .advantage-panel, 
+    .advantage-screen,
+    .mobile-slide {
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        min-width: 0 !important; 
+    }
+
+    /* Shrink the inner paddings so content fits comfortably on small screens */
+    .advantage-panel {
+        padding: 16px !important;
+    }
+
+    .advantage-screen {
+        padding: 24px 16px !important;
+    }
+
+    /* Ensure text wraps nicely instead of pushing the borders */
+    .advantage-header h3, 
+    .results-title,
+    .advantage-list li {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+
+    .advantage-list li {
+        gap: 12px !important;
+        font-size: 0.9rem !important;
+    }
 
 @media (max-width: 700px) {
     /* This completely hides the app demo window on mobile phones */
@@ -2727,4 +2842,52 @@ img { max-width: 100%; height: auto; }
     }
     
     .capabilities-title, .verticals-title, .testimonials-title, .cta-title { font-size: 1.9rem; }
+}
+/* --- VERTICAL SOLUTIONS 2x2 MOBILE FIX --- */
+@media (max-width: 640px) {
+    /* Force the 4 panels into a 2x2 grid */
+    .verticals-grid { 
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 12px !important; 
+    }
+    
+    /* Shrink the cards so they physically fit side-by-side */
+    .vertical-card {
+        min-height: 130px !important;
+        padding: 16px 12px 12px !important;
+    }
+
+    /* Shrink the transparent background graphics (gears, nodes, etc.) */
+    .vertical-icon-scene {
+        width: 32px !important;
+        height: 32px !important;
+        top: 8px !important;
+        right: 8px !important;
+    }
+
+    /* Shrink the large percentage numbers */
+    .vertical-stat {
+        font-size: 1.4rem !important;
+        margin: 25px 0 2px !important;
+    }
+
+    /* Shrink the subtext and labels so they wrap cleanly */
+    .vertical-label {
+        font-size: 0.55rem !important;
+        margin: 0 0 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    .vertical-divider {
+        margin-bottom: 8px !important;
+    }
+
+    .vertical-industry {
+        font-size: 0.75rem !important;
+    }
+    
+    .verticals-title { 
+        font-size: 2.1rem !important; 
+    }
 }

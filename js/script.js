@@ -226,3 +226,99 @@ document.addEventListener("DOMContentLoaded", () => {
         items[current].classList.add('active');
     }, 3200);
 });
+// --- Mobile Capabilities Slider Auto-Play ---
+document.addEventListener("DOMContentLoaded", () => {
+    const capGrid = document.querySelector('.capabilities-grid');
+    if (!capGrid) return;
+
+    let isMobile = window.innerWidth <= 640;
+    let autoScrollInterval;
+
+    function startAutoScroll() {
+        if (!isMobile) return;
+        autoScrollInterval = setInterval(() => {
+            // Get the width of one card plus the gap
+            const cardElement = capGrid.querySelector('.capability-card');
+            if (!cardElement) return;
+            
+            const cardWidth = cardElement.offsetWidth + 16; 
+            
+            // If we are at the end, smoothly scroll back to the start
+            if (capGrid.scrollLeft + capGrid.clientWidth >= capGrid.scrollWidth - 10) {
+                capGrid.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                // Otherwise, scroll to the next card
+                capGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            }
+        }, 4000); // 4000ms = 4 seconds per slide
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    // Check if window is resized between desktop and mobile
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 640;
+        stopAutoScroll();
+        if (isMobile) {
+            startAutoScroll();
+        } else {
+            capGrid.scrollTo({ left: 0 }); // Reset scroll on desktop
+        }
+    });
+
+    // Pause auto-scroll when the user touches the slider to swipe manually
+    capGrid.addEventListener('touchstart', stopAutoScroll, {passive: true});
+    
+    // Resume auto-scroll 3 seconds after the user stops touching the screen
+    capGrid.addEventListener('touchend', () => {
+        setTimeout(startAutoScroll, 3000);
+    });
+
+    // Start the loop
+    startAutoScroll();
+});
+// --- Mobile Results Slider Auto-Play ---
+document.addEventListener("DOMContentLoaded", () => {
+    const resultsSlider = document.querySelector('.mobile-results-slider');
+    if (!resultsSlider) return;
+
+    let isMobile = window.innerWidth <= 1100;
+    let resultsScrollInterval;
+
+    function startResultsScroll() {
+        if (!isMobile) return;
+        resultsScrollInterval = setInterval(() => {
+            const slide = resultsSlider.querySelector('.mobile-slide');
+            if (!slide) return;
+            
+            const slideWidth = slide.offsetWidth + 16; 
+            
+            if (resultsSlider.scrollLeft + resultsSlider.clientWidth >= resultsSlider.scrollWidth - 10) {
+                resultsSlider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                resultsSlider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            }
+        }, 3500); // 3.5 seconds per slide
+    }
+
+    function stopResultsScroll() {
+        clearInterval(resultsScrollInterval);
+    }
+
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 1100;
+        stopResultsScroll();
+        if (isMobile) {
+            startResultsScroll();
+        }
+    });
+
+    resultsSlider.addEventListener('touchstart', stopResultsScroll, {passive: true});
+    resultsSlider.addEventListener('touchend', () => {
+        setTimeout(startResultsScroll, 3000);
+    });
+
+    startResultsScroll();
+});
