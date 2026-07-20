@@ -2591,7 +2591,10 @@ img { max-width: 100%; height: auto; }
     .hero-glow { display: none; }
 
     /* Trust / Stats */
-    .trust-stats { grid-template-columns: 1fr; }
+    .trust-stats { 
+        grid-template-columns: repeat(3, 1fr); /* Forces 3 columns horizontally */
+        gap: 12px; /* Reduces the gap between cards */
+    }
     .trust-logos { gap: 20px; justify-content: center; }
 
     /* Synthesis dashboard */
@@ -2635,6 +2638,25 @@ img { max-width: 100%; height: auto; }
     }
     .hero-subtitle { 
         font-size: 1rem; 
+    }
+    /* Scale down the stat cards so they fit side-by-side on phones */
+    .stat-card {
+        padding: 16px 8px;
+    }
+    .stat-icon {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 10px;
+    }
+    .stat-icon i {
+        font-size: 24px;
+    }
+    .stat-card h3 {
+        font-size: 1.4rem; /* Shrinks the large numbers */
+    }
+    .stat-card p {
+        font-size: 0.55rem; /* Shrinks the subtext */
+        letter-spacing: 0;
     }
     
     /* Stack action buttons cleanly on phones */
