@@ -125,3 +125,12 @@
 .btn-get-started:hover {
   background-color: #1e293b;
 }
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .wago-navbar { padding: 0.6rem 1rem; }
+    .brand-sub { display: none; }
+}
+@media (max-width: 560px) {
+    .sign-in { display: none; }
+    .btn-get-started { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+}
