@@ -2702,7 +2702,9 @@ img { max-width: 100%; height: auto; }
 
     /* The combined card style */
     .mobile-slide {
-        flex: 0 0 82%;
+        flex: 0 0 82% !important;
+        width: 82% !important;
+        max-width: 82% !important;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         background: rgba(20,25,38,0.6);
@@ -2768,8 +2770,7 @@ img { max-width: 100%; height: auto; }
     .results-left, 
     .results-right, 
     .advantage-panel, 
-    .advantage-screen,
-    .mobile-slide {
+    .advantage-screen {
         width: 100% !important;
         max-width: 100vw !important;
         box-sizing: border-box !important;
