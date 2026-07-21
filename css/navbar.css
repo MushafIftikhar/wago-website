@@ -174,7 +174,12 @@
         margin-left: auto;
     }
 
-    .wago-navbar { justify-content: flex-start; }
+    .wago-navbar { justify-content: space-between; }
+
+    .nav-actions {
+        margin-left: auto;
+        gap: 0.6rem;
+    }
 
     .nav-hamburger {
         display: flex;
