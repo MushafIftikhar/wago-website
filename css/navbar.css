@@ -32,6 +32,7 @@
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  flex-wrap: wrap;
 }
 
 .logo-icon {
@@ -141,14 +142,20 @@
 @media (max-width: 900px) {
     .wago-navbar { padding: 0.55rem 0.9rem; }
     .brand-sub { display: none; }
-    .brand-parent { display: none; }
 
-    .mobile-brand-note {
-        text-align: center;
-        font-size: 0.72rem;
+    .nav-brand {
+        flex-basis: 100%;
+    }
+
+    .brand-parent {
+        order: 3;
+        flex-basis: 100%;
+        margin-left: 0;
+        margin-top: 2px;
+        font-size: 0.62rem;
+        padding: 2px 8px;
+        border: none;
         color: #6b7280;
-        padding: 0.6rem 1rem 0.3rem;
-        list-style: none;
     }
 
     .nav-links {
