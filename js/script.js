@@ -14,31 +14,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const textToType = "\"How do I update fall... over 10 feet...\"";
 
-    // Function to crossfade panels (only affects mobile due to our CSS setup)
-    function setMobilePanel(activePanel) {
-        voicePanel.classList.remove('active-panel');
-        enginePanel.classList.remove('active-panel');
-        reportPanel.classList.remove('active-panel');
-        activePanel.classList.add('active-panel');
-    }
+        // Function to crossfade panels (only affects mobile due to our CSS setup)
+        function setMobilePanel(activePanel) {
+            voicePanel.classList.remove('active-panel');
+            enginePanel.classList.remove('active-panel');
+            reportPanel.classList.remove('active-panel');
+            activePanel.classList.add('active-panel');
+        }
 
-    function runDemoSequence() {
-        typingText.innerHTML = "";
-        progressBar.style.width = '0%';
-        extractionLines.forEach(line => line.classList.remove('visible'));
-        reportLines.forEach(line => line.classList.remove('visible'));
+        function runDemoSequence() {
+            typingText.innerHTML = "";
+            progressBar.style.width = '0%';
+            extractionLines.forEach(line => line.classList.remove('visible'));
+            reportLines.forEach(line => line.classList.remove('visible'));
 
-        // Step 1: User speaks -> Show Voice Panel
-        setMobilePanel(voicePanel);
-        mic.classList.add('listening');
-        soundWaves.forEach(wave => wave.classList.add('active'));
+            // Step 1: User speaks -> Show Voice Panel
+            setMobilePanel(voicePanel);
+            mic.classList.add('listening');
+            soundWaves.forEach(wave => wave.classList.add('active'));
 
-        let i = 0;
-        let typeInterval = setInterval(() => {
-            typingText.innerHTML += textToType.charAt(i);
-            i++;
-            if (i >= textToType.length) clearInterval(typeInterval);
-        }, 50);
+            const isDesktop = window.innerWidth > 1000;
+            const typeSpeed = isDesktop ? 90 : 50; // ms per character; slower typing on desktop
+
+            let i = 0;
+            let typeInterval = setInterval(() => {
+                typingText.innerHTML += textToType.charAt(i);
+                i++;
+                if (i >= textToType.length) clearInterval(typeInterval);
+            }, typeSpeed);
+
+            const typingDuration = textToType.length * typeSpeed;
+            const micPhaseDuration = isDesktop ? (typingDuration + 800) : 4500; // move on shortly after typing finishes, desktop only
+            const extraDelay = micPhaseDuration - 4500; // shift all following steps by the same amount
 
         // Step 2: Mic stops, docs start flowing -> Show Engine Panel
         setTimeout(() => {
@@ -47,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             soundWaves.forEach(wave => wave.classList.remove('active'));
             aiBrain.classList.add('processing');
             progressBar.style.width = '60%';
-        }, 4500);
+        }, micPhaseDuration);
 
         // Step 3: Raw extraction preview appears (Engine panel remains active)
         setTimeout(() => {
@@ -55,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             extractionLines.forEach((line, index) => {
                 setTimeout(() => line.classList.add('visible'), index * 500);
             });
-        }, 6200);
+        }, 6200 + extraDelay);
 
         // Step 4: Final polished report appears -> Show Report Panel
         setTimeout(() => {
@@ -64,11 +71,33 @@ document.addEventListener("DOMContentLoaded", () => {
             reportLines.forEach((line, index) => {
                 setTimeout(() => line.classList.add('visible'), index * 600);
             });
-        }, 8800);
+        }, 8800 + extraDelay);
     }
 
-    setTimeout(runDemoSequence, 1000);
-    setInterval(runDemoSequence, 16000); // Loops the entire sequence
+    // Only start the sequence once this section actually scrolls into view,
+    // and always restart from panel 1 (mic) at that point.
+    const synthesisSection = document.querySelector('.synthesis-section');
+    let sequenceStarted = false;
+    let loopInterval = null;
+
+    if (synthesisSection) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !sequenceStarted) {
+                    sequenceStarted = true;
+                    runDemoSequence(); // starts immediately from panel 1
+                    const isDesktopNow = window.innerWidth > 1000;
+                    loopInterval = setInterval(runDemoSequence, isDesktopNow ? 18500 : 16000);
+                } else if (!entry.isIntersecting && sequenceStarted) {
+                    // Reset so it plays from panel 1 again next time it's scrolled into view
+                    sequenceStarted = false;
+                    clearInterval(loopInterval);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sectionObserver.observe(synthesisSection);
+    }
 });
 document.addEventListener("DOMContentLoaded", () => {
     const statNumbers = document.querySelectorAll('[data-count-to]');
@@ -157,7 +186,16 @@ document.addEventListener("DOMContentLoaded", () => {
         autoSlideTimer = setInterval(() => {
             currentIndex = (currentIndex + 1) % totalSlides;
             updateTrack();
-        }, 4500);
+        }, 3000);
+    }
+
+    function kickstartAutoSlide() {
+        // Trigger the first advance quickly instead of waiting a full interval
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateTrack();
+            startAutoSlide();
+        }, 800);
     }
 
     function stopAutoSlide() {
@@ -204,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buildDots();
     updateTrack();
-    startAutoSlide();
+    kickstartAutoSlide();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
