@@ -144,18 +144,21 @@
     .brand-sub { display: none; }
 
     .nav-brand {
-        flex-basis: 100%;
+        flex-wrap: wrap;
+        row-gap: 6px;
     }
 
     .brand-parent {
-        order: 3;
         flex-basis: 100%;
-        margin-left: 0;
-        margin-top: 2px;
-        font-size: 0.62rem;
+        margin-left: 44px;
+        margin-top: 0;
+        font-size: 0.6rem;
         padding: 2px 8px;
-        border: none;
-        color: #6b7280;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        color: #9ca3af;
+        white-space: nowrap;
+        width: fit-content;
     }
 
     .nav-links {
