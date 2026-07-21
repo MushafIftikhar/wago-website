@@ -339,3 +339,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll('.mobile-slide');
+    if (!slides.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.55) {
+                entry.target.classList.add('in-view');
+            } else {
+                entry.target.classList.remove('in-view');
+            }
+        });
+    }, { threshold: [0, 0.55, 1] });
+
+    slides.forEach(slide => observer.observe(slide));
+});
