@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalSlides = Math.max(totalCards - cardsPerView + 1, 1);
     let currentIndex = 0;
     let autoSlideTimer = null;
+    let touchStartX = 0;
 
     function buildDots() {
         dotsContainer.innerHTML = '';
@@ -178,6 +179,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     viewport.addEventListener('mouseenter', stopAutoSlide);
     viewport.addEventListener('mouseleave', startAutoSlide);
+    viewport.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoSlide();
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
+        } else {
+            startAutoSlide();
+        }
+    });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') nextSlide();
@@ -351,4 +367,20 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks.classList.remove('open');
         }
     });
+});
+// --- Desktop: staggered entrance for stat cards & detail list ---
+document.addEventListener("DOMContentLoaded", () => {
+    const revealTargets = document.querySelectorAll('.result-stat-card, .detail-item');
+    if (!revealTargets.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    revealTargets.forEach(el => observer.observe(el));
 });
