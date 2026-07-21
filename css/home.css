@@ -2687,26 +2687,23 @@ img { max-width: 100%; height: auto; }
 
     /* Show and style the new mobile slider */
     .mobile-results-slider {
-        display: flex !important;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        gap: 16px;
-        padding: 0 16px 20px;
+        display: block !important;
+        overflow: hidden;
+        width: 100%;
         margin-bottom: 30px;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
     }
-    .mobile-results-slider::-webkit-scrollbar { display: none; }
+
+    .mobile-results-track {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
 
     /* The combined card style */
     .mobile-slide {
-        flex: 0 0 82% !important;
-        width: 82% !important;
-        max-width: 82% !important;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
         background: rgba(20,25,38,0.6);
         border: 1px solid rgba(255,255,255,0.1);
         border-left: 4px solid transparent;
@@ -2756,6 +2753,12 @@ img { max-width: 100%; height: auto; }
     .mobile-slide.in-view .result-stat-icon {
         opacity: 1;
         transform: scale(1) translateY(0);
+    }
+
+    /* Hide the desktop layout on mobile */
+    .results-stats-grid, 
+    .results-detail-list { 
+        display: none !important; 
     }
 
     /* --- MOBILE FIT & OVERFLOW FIXES --- */

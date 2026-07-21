@@ -279,49 +279,61 @@ document.addEventListener("DOMContentLoaded", () => {
     // Start the loop
     startAutoScroll();
 });
-// --- Mobile Results Slider Auto-Play ---
+// --- Mobile Results Slider (transform-based, reliable) ---
 document.addEventListener("DOMContentLoaded", () => {
-    const resultsSlider = document.querySelector('.mobile-results-slider');
-    if (!resultsSlider) return;
-
-    const slides = resultsSlider.querySelectorAll('.mobile-slide');
-    if (!slides.length) return;
+    const slider = document.querySelector('.mobile-results-slider');
+    const track = document.querySelector('.mobile-results-track');
+    const slides = document.querySelectorAll('.mobile-results-track .mobile-slide');
+    if (!slider || !track || !slides.length) return;
 
     let isMobile = window.innerWidth <= 1100;
     let currentIndex = 0;
-    let resultsScrollInterval;
+    let autoTimer;
 
-    function scrollToIndex(index) {
+    function render() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        slides.forEach((s, i) => s.classList.toggle('in-view', i === currentIndex));
+    }
+
+    function goTo(index) {
         currentIndex = ((index % slides.length) + slides.length) % slides.length;
-        const target = slides[currentIndex];
-        resultsSlider.scrollTo({ left: target.offsetLeft - resultsSlider.offsetLeft, behavior: 'smooth' });
+        render();
     }
 
-    function startResultsScroll() {
+    function startAuto() {
         if (!isMobile) return;
-        resultsScrollInterval = setInterval(() => {
-            scrollToIndex(currentIndex + 1);
-        }, 3500);
+        stopAuto();
+        autoTimer = setInterval(() => goTo(currentIndex + 1), 3500);
     }
 
-    function stopResultsScroll() {
-        clearInterval(resultsScrollInterval);
+    function stopAuto() {
+        clearInterval(autoTimer);
     }
+
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAuto();
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) goTo(currentIndex + 1);
+            else goTo(currentIndex - 1);
+        }
+        setTimeout(startAuto, 3000);
+    });
 
     window.addEventListener('resize', () => {
         isMobile = window.innerWidth <= 1100;
-        stopResultsScroll();
-        if (isMobile) {
-            startResultsScroll();
-        }
+        stopAuto();
+        if (isMobile) startAuto();
     });
 
-    resultsSlider.addEventListener('touchstart', stopResultsScroll, {passive: true});
-    resultsSlider.addEventListener('touchend', () => {
-        setTimeout(startResultsScroll, 3000);
-    });
-
-    startResultsScroll();
+    render();
+    startAuto();
 });
 document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.getElementById('navHamburger');
@@ -339,20 +351,4 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks.classList.remove('open');
         }
     });
-});
-document.addEventListener("DOMContentLoaded", () => {
-    const slides = document.querySelectorAll('.mobile-slide');
-    if (!slides.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.55) {
-                entry.target.classList.add('in-view');
-            } else {
-                entry.target.classList.remove('in-view');
-            }
-        });
-    }, { threshold: [0, 0.55, 1] });
-
-    slides.forEach(slide => observer.observe(slide));
 });
