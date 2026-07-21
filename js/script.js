@@ -242,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
         items[current].classList.add('active');
     }, 3200);
 });
+
 // --- Mobile Capabilities Slider Auto-Play ---
 document.addEventListener("DOMContentLoaded", () => {
     const capGrid = document.querySelector('.capabilities-grid');
@@ -250,23 +251,23 @@ document.addEventListener("DOMContentLoaded", () => {
     let isMobile = window.innerWidth <= 640;
     let autoScrollInterval;
 
+    function scrollStep() {
+        const cardElement = capGrid.querySelector('.capability-card');
+        if (!cardElement) return;
+
+        const cardWidth = cardElement.offsetWidth + 16; 
+
+        if (capGrid.scrollLeft + capGrid.clientWidth >= capGrid.scrollWidth - 10) {
+            capGrid.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            capGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+    }
+
     function startAutoScroll() {
         if (!isMobile) return;
-        autoScrollInterval = setInterval(() => {
-            // Get the width of one card plus the gap
-            const cardElement = capGrid.querySelector('.capability-card');
-            if (!cardElement) return;
-            
-            const cardWidth = cardElement.offsetWidth + 16; 
-            
-            // If we are at the end, smoothly scroll back to the start
-            if (capGrid.scrollLeft + capGrid.clientWidth >= capGrid.scrollWidth - 10) {
-                capGrid.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                // Otherwise, scroll to the next card
-                capGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            }
-        }, 4000); // 4000ms = 4 seconds per slide
+        setTimeout(scrollStep, 1200); // first scroll happens quickly after load
+        autoScrollInterval = setInterval(scrollStep, 4000); // then continues at normal pace
     }
 
     function stopAutoScroll() {
@@ -295,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Start the loop
     startAutoScroll();
 });
+
 // --- Mobile Results Slider (transform-based, reliable) ---
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector('.mobile-results-slider');
@@ -319,7 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function startAuto() {
         if (!isMobile) return;
         stopAuto();
-        autoTimer = setInterval(() => goTo(currentIndex + 1), 3500);
+        setTimeout(() => goTo(currentIndex + 1), 1200); // first slide change happens quickly
+        autoTimer = setInterval(() => goTo(currentIndex + 1), 3500); // then continues at normal pace
     }
 
     function stopAuto() {
