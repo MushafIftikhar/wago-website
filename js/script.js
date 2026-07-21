@@ -284,23 +284,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultsSlider = document.querySelector('.mobile-results-slider');
     if (!resultsSlider) return;
 
+    const slides = resultsSlider.querySelectorAll('.mobile-slide');
+    if (!slides.length) return;
+
     let isMobile = window.innerWidth <= 1100;
+    let currentIndex = 0;
     let resultsScrollInterval;
+
+    function scrollToIndex(index) {
+        currentIndex = ((index % slides.length) + slides.length) % slides.length;
+        const target = slides[currentIndex];
+        resultsSlider.scrollTo({ left: target.offsetLeft - resultsSlider.offsetLeft, behavior: 'smooth' });
+    }
 
     function startResultsScroll() {
         if (!isMobile) return;
         resultsScrollInterval = setInterval(() => {
-            const slide = resultsSlider.querySelector('.mobile-slide');
-            if (!slide) return;
-            
-            const slideWidth = slide.offsetWidth + 16; 
-            
-            if (resultsSlider.scrollLeft + resultsSlider.clientWidth >= resultsSlider.scrollWidth - 10) {
-                resultsSlider.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                resultsSlider.scrollBy({ left: slideWidth, behavior: 'smooth' });
-            }
-        }, 3500); // 3.5 seconds per slide
+            scrollToIndex(currentIndex + 1);
+        }, 3500);
     }
 
     function stopResultsScroll() {

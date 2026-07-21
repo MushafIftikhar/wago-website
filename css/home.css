@@ -2693,7 +2693,7 @@ img { max-width: 100%; height: auto; }
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         gap: 16px;
-        padding-bottom: 20px;
+        padding: 0 16px 20px;
         margin-bottom: 30px;
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -2702,8 +2702,9 @@ img { max-width: 100%; height: auto; }
 
     /* The combined card style */
     .mobile-slide {
-        flex: 0 0 85%;
-        scroll-snap-align: center;
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
         background: rgba(20,25,38,0.6);
         border: 1px solid rgba(255,255,255,0.1);
         border-left: 4px solid transparent;
