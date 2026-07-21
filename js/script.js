@@ -322,3 +322,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startResultsScroll();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+        }
+    });
+});

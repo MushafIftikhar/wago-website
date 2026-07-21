@@ -125,12 +125,85 @@
 .btn-get-started:hover {
   background-color: #1e293b;
 }
+.nav-hamburger { display: none; }
+.mobile-signin { display: none; }
+
 @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .wago-navbar { padding: 0.6rem 1rem; }
+    .wago-navbar { padding: 0.55rem 0.9rem; }
     .brand-sub { display: none; }
-}
-@media (max-width: 560px) {
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        transform: translateX(0) translateY(-8px);
+        background: rgba(17, 21, 32, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        padding: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .nav-links.open {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .nav-links a {
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.06); }
+
+    .mobile-signin {
+        display: block;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        margin-top: 0.3rem;
+        padding-top: 1rem !important;
+        color: #9ca3af;
+    }
+
     .sign-in { display: none; }
+
+    .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 34px;
+        height: 34px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+    .nav-hamburger span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: #e5e7eb;
+        border-radius: 2px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     .btn-get-started { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+}
+
+@media (max-width: 560px) {
+    .wago-navbar { padding: 0.5rem 0.75rem; }
+    .btn-get-started { padding: 0.45rem 0.8rem; font-size: 0.75rem; }
 }

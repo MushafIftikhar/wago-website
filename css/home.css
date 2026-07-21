@@ -2767,6 +2767,7 @@ img { max-width: 100%; height: auto; }
         gap: 12px !important;
         font-size: 0.9rem !important;
     }
+}
 
 @media (max-width: 700px) {
     /* This completely hides the app demo window on mobile phones */
