@@ -67,6 +67,16 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
+.brand-parent {
+  color: #9ca3af;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
 
 /* --- Navigation Links --- */
 .nav-links {
@@ -131,6 +141,15 @@
 @media (max-width: 900px) {
     .wago-navbar { padding: 0.55rem 0.9rem; }
     .brand-sub { display: none; }
+    .brand-parent { display: none; }
+
+    .mobile-brand-note {
+        text-align: center;
+        font-size: 0.72rem;
+        color: #6b7280;
+        padding: 0.6rem 1rem 0.3rem;
+        list-style: none;
+    }
 
     .nav-links {
         display: flex;
