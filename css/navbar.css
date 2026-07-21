@@ -166,15 +166,12 @@
     }
     .nav-links a:hover { background: rgba(255,255,255,0.06); }
 
-    .mobile-signin {
-        display: block;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        margin-top: 0.3rem;
-        padding-top: 1rem !important;
-        color: #9ca3af;
-    }
+    .mobile-signin { display: none; }
 
-    .sign-in { display: none; }
+    .sign-in {
+        display: inline-block;
+        font-size: 0.72rem;
+    }
 
     .nav-hamburger {
         display: flex;
