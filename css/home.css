@@ -1835,7 +1835,7 @@ img { max-width: 100%; height: auto; }
     .wago-hero {
         flex-direction: column;
         min-height: auto;
-        padding: 2rem 1rem 4rem; 
+        padding: 7.5rem 1rem 4rem; 
         text-align: center;
         width: 100%;
         overflow-x: hidden; 
