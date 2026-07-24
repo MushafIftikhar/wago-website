@@ -1,105 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const mic = document.getElementById('demo-mic');
-    const soundWaves = document.querySelectorAll('.sound-wave');
-    const typingText = document.getElementById('typing-text');
-    const aiBrain = document.getElementById('ai-brain');
-    const progressBar = document.getElementById('demo-progress');
-    const extractionLines = document.querySelectorAll('#demo-extraction .extraction-line');
-    const reportLines = document.querySelectorAll('#demo-report .hidden-text');
-
-    // Select the three panels
-    const voicePanel = document.querySelector('.voice-panel');
-    const enginePanel = document.querySelector('.engine-panel');
-    const reportPanel = document.querySelector('.report-panel');
-
-    const textToType = "\"How do I update fall... over 10 feet...\"";
-
-        // Function to crossfade panels (only affects mobile due to our CSS setup)
-        function setMobilePanel(activePanel) {
-            voicePanel.classList.remove('active-panel');
-            enginePanel.classList.remove('active-panel');
-            reportPanel.classList.remove('active-panel');
-            activePanel.classList.add('active-panel');
-        }
-
-        function runDemoSequence() {
-            typingText.innerHTML = "";
-            progressBar.style.width = '0%';
-            extractionLines.forEach(line => line.classList.remove('visible'));
-            reportLines.forEach(line => line.classList.remove('visible'));
-
-            // Step 1: User speaks -> Show Voice Panel
-            setMobilePanel(voicePanel);
-            mic.classList.add('listening');
-            soundWaves.forEach(wave => wave.classList.add('active'));
-
-            const isDesktop = window.innerWidth > 1000;
-            const typeSpeed = isDesktop ? 90 : 50; // ms per character; slower typing on desktop
-
-            let i = 0;
-            let typeInterval = setInterval(() => {
-                typingText.innerHTML += textToType.charAt(i);
-                i++;
-                if (i >= textToType.length) clearInterval(typeInterval);
-            }, typeSpeed);
-
-            const typingDuration = textToType.length * typeSpeed;
-            const micPhaseDuration = isDesktop ? (typingDuration + 800) : 4500; // move on shortly after typing finishes, desktop only
-            const extraDelay = micPhaseDuration - 4500; // shift all following steps by the same amount
-
-        // Step 2: Mic stops, docs start flowing -> Show Engine Panel
-        setTimeout(() => {
-            setMobilePanel(enginePanel);
-            mic.classList.remove('listening');
-            soundWaves.forEach(wave => wave.classList.remove('active'));
-            aiBrain.classList.add('processing');
-            progressBar.style.width = '60%';
-        }, micPhaseDuration);
-
-        // Step 3: Raw extraction preview appears (Engine panel remains active)
-        setTimeout(() => {
-            progressBar.style.width = '100%';
-            extractionLines.forEach((line, index) => {
-                setTimeout(() => line.classList.add('visible'), index * 500);
-            });
-        }, 6200 + extraDelay);
-
-        // Step 4: Final polished report appears -> Show Report Panel
-        setTimeout(() => {
-            setMobilePanel(reportPanel);
-            aiBrain.classList.remove('processing');
-            reportLines.forEach((line, index) => {
-                setTimeout(() => line.classList.add('visible'), index * 600);
-            });
-        }, 8800 + extraDelay);
-    }
-
-    // Only start the sequence once this section actually scrolls into view,
-    // and always restart from panel 1 (mic) at that point.
-    const synthesisSection = document.querySelector('.synthesis-section');
-    let sequenceStarted = false;
-    let loopInterval = null;
-
-    if (synthesisSection) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !sequenceStarted) {
-                    sequenceStarted = true;
-                    runDemoSequence(); // starts immediately from panel 1
-                    const isDesktopNow = window.innerWidth > 1000;
-                    loopInterval = setInterval(runDemoSequence, isDesktopNow ? 18500 : 16000);
-                } else if (!entry.isIntersecting && sequenceStarted) {
-                    // Reset so it plays from panel 1 again next time it's scrolled into view
-                    sequenceStarted = false;
-                    clearInterval(loopInterval);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        sectionObserver.observe(synthesisSection);
-    }
-});
-document.addEventListener("DOMContentLoaded", () => {
     const statNumbers = document.querySelectorAll('[data-count-to]');
     if (!statNumbers.length) return;
 
@@ -424,4 +323,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
 
     revealTargets.forEach(el => observer.observe(el));
+});
+
+// --- Transparent to Solid Navbar on Scroll ---
+document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.querySelector('.wago-navbar');
+    if (!navbar) return;
+
+    window.addEventListener('scroll', () => {
+        // If scrolled down more than 50 pixels, add the solid background
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            // If back at the top, make it transparent again
+            navbar.classList.remove('scrolled');
+        }
+    });
 });

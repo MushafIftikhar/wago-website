@@ -1,5 +1,5 @@
 /* --- Google Font Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
 
 /* --- Global Variables --- */
 :root {
@@ -8,18 +8,20 @@
   --font-primary: 'Inter', system-ui, sans-serif;
 }
 
-/* --- Base Body Styling --- */
+/* Replace this entire block in theme.css */
 body {
-  background-color: var(--bg-color);
-  background-image: url('../assets/images/dark-tech-bg.jpg'); 
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  color: var(--text-main);
-  font-family: var(--font-primary);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    /* Exact NexZuku Match: Deep navy base with soft teal and plum radial glows */
+    background-color: #0b1325;
+    background-image: 
+        radial-gradient(circle at 15% 35%, rgba(24, 99, 142, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 85% 65%, rgba(112, 45, 118, 0.4) 0%, transparent 60%);
+    background-attachment: fixed;
+    
+    color: var(--text-main);
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 *, *::before, *::after {

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Link the CSS files in the correct order -->
-    <link rel="stylesheet" href="css/theme.css?v=4">
-    <link rel="stylesheet" href="css/navbar.css?v=4">
-    <link rel="stylesheet" href="css/home.css?v=4">
+    <link rel="stylesheet" href="css/theme.css?v=6">
+    <link rel="stylesheet" href="css/navbar.css?v=5">
+    <link rel="stylesheet" href="css/home.css?v=9">
 </head>
 <body>
 
@@ -46,89 +46,81 @@
 
     <!-- Hero Section -->
     <section class="wago-hero">
-        <div class="hero-content">
-            <div class="hero-glow"></div>
-            <span class="hero-badge">AI-Powered Corporate Japanese Training</span>
+        <div class="hero-decor" aria-hidden="true">
+            <span class="decor-dot d1"></span>
+            <span class="decor-dot d2"></span>
+            <span class="decor-dot d3"></span>
+            <span class="decor-dot d4"></span>
+            <span class="decor-dot d5"></span>
+            <span class="decor-dot d6"></span>
 
-            <h1 class="hero-title">Prepare your workforce<br>for the<br><span class="hero-highlight">Japanese Market</span>.</h1>
+            <svg class="decor-cluster cluster-tl" viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg">
+                <line x1="8" y1="70" x2="55" y2="25" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="55" y1="25" x2="115" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <circle cx="8" cy="70" r="2.2" fill="rgba(255,255,255,0.55)"/>
+                <circle cx="55" cy="25" r="2.2" fill="rgba(255,255,255,0.55)"/>
+                <circle cx="115" cy="50" r="2.2" fill="rgba(255,255,255,0.55)"/>
+            </svg>
+
+            <svg class="decor-cluster cluster-br" viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg">
+                <line x1="15" y1="20" x2="70" y2="55" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="70" y1="55" x2="130" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <circle cx="15" cy="20" r="2.2" fill="rgba(255,255,255,0.55)"/>
+                <circle cx="70" cy="55" r="2.2" fill="rgba(255,255,255,0.55)"/>
+                <circle cx="130" cy="30" r="2.2" fill="rgba(255,255,255,0.55)"/>
+            </svg>
+
+            <svg class="decor-cluster cluster-bl" viewBox="0 0 110 70" xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="15" x2="60" y2="50" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <circle cx="10" cy="15" r="2" fill="rgba(255,255,255,0.5)"/>
+                <circle cx="60" cy="50" r="2" fill="rgba(255,255,255,0.5)"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            
+            <div class="hero-badge">
+                <i class="fa-solid fa-brain" style="margin-right: 8px;"></i> Built for Corporate Japanese Training.
+            </div>
+
+            <h1 class="hero-title">
+                Prepare your workforce<br>
+                <span class="hero-title-muted">for the</span><br>
+                <span class="hero-highlight">Japanese Market.</span>
+            </h1>
 
             <p class="hero-subtitle">
                 Equip international employees with business-ready Japanese skills through AI-powered voice cloning, specialized curriculum, and real-time feedback.
             </p>
 
             <div class="hero-actions">
-                <a href="#" class="btn-primary-glow">Start Your Free Trial</a>
-                <a href="#" class="btn-link">Request a Demo</a>
+                <a href="#" class="btn-primary-solid">
+                    <i class="fa-regular fa-calendar" style="margin-right: 8px; color: #00A3FF;"></i> Start Your Free Trial
+                </a>
+                <a href="#" class="btn-secondary-outline">
+                    See How It Works <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+
+            </div>
+    </section>
+
+    <!-- Full-Width Trust Strip (Anchored to the bottom) -->
+    <div class="nexzuku-trust-strip">
+        <div class="trust-strip-inner">
+            <div class="trust-item">
+                <i class="fa-solid fa-shield"></i> 500+ Enterprise Clients
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-location-dot"></i> Global HQ: Tokyo, Japan
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-certificate"></i> SOC-2 Type II Certified
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-globe"></i> Bilingual EN/JP Support
             </div>
         </div>
-
-        <div class="hero-visual">
-            <div class="demo-tilt-wrapper" id="demo-tilt">
-            <div class="app-demo-window">
-
-                <div class="demo-titlebar">
-                    <div class="traffic-dots">
-                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    </div>
-                    <div class="demo-search-bar">
-                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        Search
-                    </div>
-                    <div class="demo-titlebar-icons"><span>+</span><span>⧉</span></div>
-                </div>
-
-                <div class="demo-body">
-                    <div class="demo-app-header">
-                        <div class="demo-logo-circle">和</div>
-                        <span class="demo-app-name">WaGo</span>
-                        <span class="demo-more">•••</span>
-                    </div>
-
-                    <div class="demo-chat">
-                        <div class="demo-msg user-msg">
-                            <span class="msg-label">User</span>
-                            <p>Hey WaGo, what are the primary safety sources for construction training?</p>
-                        </div>
-
-                        <div class="demo-msg wago-msg">
-                            <span class="msg-label"><span class="mini-w-badge">和</span> WaGo</span>
-                            <p>Based on official MHLW/JITCO guidelines, the main sources include:</p>
-                            <ol>
-                                <li><strong>Ensuring Safety for Technical Intern Trainees</strong> (Bilingual PDF)</li>
-                                <li><strong>MHLW Workplace Safety Site</strong>. See more details <a href="#">here</a>.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="demo-doc-analysis">
-                        <p class="demo-section-label">Document Analysis</p>
-                        <div class="demo-analyze-box">
-                            <span class="demo-upload-icon">⇧</span>
-                            <div>
-                                <strong>Analyze File</strong>
-                                <p>Upload Construction Safety Plan/Regulation for Context</p>
-                            </div>
-                        </div>
-
-                        <p class="demo-section-label">Processed Documents:</p>
-                        <div class="demo-processed-docs">
-                            <div class="demo-mini-doc"><span class="mini-doc-icon">▤</span><div><strong>Company Safety Protocol x3</strong><small>(link Analyzed)</small></div></div>
-                            <div class="demo-mini-doc"><span class="mini-doc-icon">▤</span><div><strong>OSHA Regs Part 1936</strong><small>(link Analyzed)</small></div></div>
-                        </div>
-                    </div>
-
-                    <div class="demo-input-bar">
-                        <span>Type query or attach file...</span>
-                        <span class="demo-mic-icon">
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 11a7 7 0 0 1-14 0"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        </section>
+    </div>
 
     <!-- Trust / Stats Section -->
     <section class="trust-section">
@@ -178,176 +170,12 @@
             </div>
         </div>
     </section>
-    <!-- Demo Lead-In Section -->
-    <section class="demo-intro-section">
-        <div class="demo-intro-inner">
-            <span class="demo-intro-badge"><i class="fa-solid fa-circle-play"></i> Live Demo</span>
-            <h2 class="demo-intro-title">Watch WaGo think.</h2>
-            <p class="demo-intro-subtitle">See exactly how a real employee question gets pulled from official documentation, synthesized across sources, and turned into a compliant answer — in seconds.</p>
-        </div>
-    </section>
-
-    <!-- Knowledge Synthesis Dynamic Demo Section -->
-    <section class="synthesis-section">
-        <div class="dashboard-grid">
-
-            <!-- PANEL 1: VOICE -->
-            <div class="glass-panel voice-panel">
-                <div class="user-ask">
-                    <div class="avatar-circle"><i class="fa fa-user"></i></div>
-                    <p>User: Ask: How do I update the fall protection for scaffolding over 10ft?</p>
-                </div>
-
-                <div class="mic-visualization">
-                    <div class="sound-wave">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    </div>
-                    <div class="mic-frame">
-                        <img src="assets/images/mic-glow-icon.png" alt="Mic" class="animated-mic" id="demo-mic">
-                    </div>
-                    <div class="sound-wave right-wave">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    </div>
-                </div>
-
-                <div class="transcription-box">
-                    <span id="typing-text"></span><span class="cursor">|</span>
-                </div>
-
-                <div class="click-hint">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
-                        <path d="M6 3v14.5c0 .8.9 1.2 1.5.7l3.2-2.8 2 4.6c.2.5.8.7 1.3.5l1.4-.6c.5-.2.7-.8.5-1.3l-2-4.6h4.2c.9 0 1.3-1 .7-1.6L7.2 2.4C6.6 1.8 6 2.2 6 3z"/>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- PANEL 2: ENGINE -->
-            <div class="glass-panel engine-panel">
-                <div class="engine-title-bar">Knowledge Synthesis Engine</div>
-
-                <div class="engine-diagram">
-                    <div class="flow-track track-left"></div>
-                    <div class="flow-track track-right"></div>
-
-                    <div class="doc-group input-docs">
-                        <div class="doc-card jitco">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="JITCO"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">JITCO</span>
-                        </div>
-                        <div class="doc-card mhlw">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="MHLW"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">MHLW</span>
-                        </div>
-                        <div class="doc-card jitco">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="JITCO"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">JITCO</span>
-                        </div>
-                        <div class="doc-card mhlw">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="MHLW"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">MHLW</span>
-                        </div>
-                    </div>
-
-                    <div class="ai-core-center" id="ai-brain">
-                        <div class="brain-ring"></div>
-                        <img src="assets/images/ai-brain-icon.png" alt="AI Brain">
-                        <span class="float-word w1">FALL PROTECTION</span>
-                        <span class="float-word w2">SCAFFOLDING</span>
-                        <span class="float-word w3 accent">CONTINUOUS</span>
-                        <span class="float-word w4">BULLETIN</span>
-                        <span class="float-word w5 accent">JITCO</span>
-                        <span class="float-word w6 accent">MHLW</span>
-                    </div>
-
-                    <div class="doc-group output-docs">
-                        <div class="doc-card jitco large">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="JITCO"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">JITCO</span>
-                            <small class="mandatory-tag">MANDATORY</small>
-                        </div>
-                        <div class="doc-card mhlw large">
-                            <div class="doc-card-head"><span class="doc-badge-icon"><img src="assets/images/doc-icon.png" alt="MHLW"></span></div>
-                            <div class="doc-card-lines"><span></span><span></span><span></span></div>
-                            <span class="doc-card-label">MHLW</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="engine-mid-row">
-                    <div class="engine-doc-analysis">
-                        <p class="engine-section-label">Document Analysis</p>
-                        <div class="engine-analyze-box">
-                            <span class="engine-upload-icon"><i class="fa-solid fa-arrow-up-from-bracket"></i></span>
-                            <div>
-                                <strong>Analyze File</strong>
-                                <p>Upload Construction Safety Plan/Regulation for Context</p>
-                            </div>
-                        </div>
-
-                        <p class="engine-section-label">Processed Documents:</p>
-                        <div class="engine-processed-docs">
-                            <div class="engine-mini-doc"><i class="fa-regular fa-file-lines"></i><div><strong>Company Safety Protocol v3</strong><small>(Intel Analyzed)</small></div></div>
-                            <div class="engine-mini-doc"><i class="fa-regular fa-file-lines"></i><div><strong>OSHA Regs Part 1926</strong><small>(Intel Analyzed)</small></div></div>
-                        </div>
-                    </div>
-
-                    <div class="extraction-preview" id="demo-extraction">
-                        <p class="extraction-line"><strong>1.</strong> Continuous fall protection system is <strong>MANDATORY</strong> above 3 meters (approx. 10 feet).</p>
-                        <p class="extraction-line"><strong>2.</strong> Key requirements: full guardrail systems OR safety net system must be in place.</p>
-                        <p class="extraction-line"><strong>3.</strong> New bulletin update (simulated): MHLW Guideline 2024-AMEND-12 clarifies edge protection specs.</p>
-                    </div>
-                </div>
-
-                <div class="progress-container">
-                    <p>Synthesis progress...</p>
-                    <div class="progress-bar-bg">
-                        <div class="progress-fill" id="demo-progress"></div>
-                    </div>
-                </div>
-
-                <div class="engine-footers">
-                    <div class="footer-box">Contextual Analysis & Live Sorting<br>(Fall Protection > 10ft handled).</div>
-                    <div class="footer-box">Live Comparison & Reconciliation<br>(Priorities Handled - JITCO handles).</div>
-                </div>
-            </div>
-
-            <!-- PANEL 3: REPORT -->
-            <div class="glass-panel report-panel">
-                <div class="report-header">
-                    <span class="report-logo-badge">和</span> WaGo Synthesized Report:
-                </div>
-                <h4>Fall Protection for Scaffolding (Over 10 Feet)</h4>
-
-                <div class="report-content" id="demo-report">
-                    <p class="hidden-text">1. Continuous fall protection system is MANDATORY above 3 meters (approx. 10 feet).</p>
-                    <p class="hidden-text">2. Key requirements: Full guardrail systems OR safety net system must be in place.</p>
-                    <p class="hidden-text">3. New bulletin update (simulated): MHLW Guideline 2024-AMEND-12 clarifies edge protection specifications.</p>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="btn-action update-btn">⚙️ Update Company Policy</button>
-                    <button class="btn-action email-btn">✉️ Email Team</button>
-                </div>
-
-                <div class="badge-row">
-                    <span class="doc-badge"><img src="assets/images/doc-icon.png" alt="">JITCO</span>
-                    <span class="doc-badge"><img src="assets/images/doc-icon.png" alt="">MHLW</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
 
     <!-- Platform Capabilities Section -->
     <section class="capabilities-section">
         <div class="capabilities-inner">
             <span class="capabilities-badge">Platform Capabilities</span>
-            <h2 class="capabilities-title">Enterprise-grade language training</h2>
+            <h2 class="capabilities-title">Enterprise-grade <span class="title-accent">language training</span></h2>
             <p class="capabilities-subtitle">A comprehensive suite of tools built to deploy organization-wide Japanese curriculum at scale.</p>
 
             <div class="capabilities-grid">
@@ -489,7 +317,7 @@
 
             <div class="results-left">
                 <span class="results-badge">Proven Results</span>
-                <h2 class="results-title">Accelerate proficiency with AI precision.</h2>
+                <h2 class="results-title">Accelerate proficiency <span class="title-accent">with AI precision.</span></h2>
                 <p class="results-subtitle">Traditional methods take years. WaGo delivers business-ready fluency in months through hyper-personalized learning paths.</p>
 
                 <div class="results-stats-grid">
@@ -635,7 +463,7 @@
         <div class="verticals-constellation"></div>
         <div class="verticals-inner">
             <span class="verticals-badge">Vertical Solutions</span>
-            <h2 class="verticals-title">Curated for your sector.</h2>
+            <h2 class="verticals-title">Curated for <span class="title-accent">your sector.</span></h2>
             <p class="verticals-subtitle">Industry-specific scenarios and technical terminology designed for global teams.</p>
 
             <div class="verticals-grid">
@@ -748,7 +576,7 @@
     <section class="testimonials-section">
         <div class="testimonials-inner">
             <span class="testimonials-badge">Loved by teams worldwide</span>
-            <h2 class="testimonials-title">What our customers say</h2>
+            <h2 class="testimonials-title">What our <span class="title-accent">customers say</span></h2>
 
             <div class="testimonials-viewport">
                 <div class="testimonials-track" id="testimonials-track">
@@ -846,7 +674,7 @@
     <!-- Final CTA Section -->
     <section class="cta-section">
         <div class="cta-inner">
-            <h2 class="cta-title">Ready to transform your global communication?</h2>
+            <h2 class="cta-title">Ready to transform your <span class="title-accent">global communication?</span></h2>
             <p class="cta-subtitle">Join 500+ global enterprises already accelerating their Japanese language goals with WaGo.</p>
 
             <div class="cta-actions">
